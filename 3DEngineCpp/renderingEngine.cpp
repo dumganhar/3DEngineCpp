@@ -2,7 +2,11 @@
 #include "window.h"
 #include "gameObject.h"
 #include "shader.h"
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 
 RenderingEngine::RenderingEngine()
 {

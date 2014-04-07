@@ -1,6 +1,10 @@
 #include "window.h"
 #include <SDL2/SDL.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include "sdl_backend.h"
 
 int Window::s_width = 0;
@@ -25,11 +29,13 @@ void Window::Create(int width, int height, const std::string& title)
 
 	SDLCreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, false);
 
+#ifndef __APPLE__
 	GLenum res = glewInit();
 	if(res != GLEW_OK)
 	{
 		fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
 	}
+#endif
 }
 
 void Window::Render()

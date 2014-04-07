@@ -2,10 +2,15 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <cstdlib>
 
 #include "util.h"
+#include "FileUtils.h"
 
 //--------------------------------------------------------------------------------
 // Variable Initializations
@@ -213,7 +218,10 @@ void ShaderData::AddVertexShader(const std::string& text)
 
 void ShaderData::AddGeometryShader(const std::string& text)
 {
+// There isn't GL_GEOMETRY_SHADER on osx
+#ifndef __APPLE__
 	AddProgram(text, GL_GEOMETRY_SHADER);
+#endif
 }
 
 void ShaderData::AddFragmentShader(const std::string& text)
@@ -385,14 +393,16 @@ static void CheckShaderError(int shader, int flag, bool isProgram, const std::st
 	}
 }
 
+
+
 static std::string LoadShader(const std::string& fileName)
 {
 	std::ifstream file;
-	file.open(("./res/shaders/" + fileName).c_str());
+	file.open(fullPath("./res/shaders/", fileName).c_str());
 
 	std::string output;
 	std::string line;
-
+    
 	if(file.is_open())
 	{
 		while(file.good())

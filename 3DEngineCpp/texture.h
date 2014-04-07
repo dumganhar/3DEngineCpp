@@ -2,7 +2,11 @@
 #define TEXTURE_H
 
 #include "referenceCounter.h"
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <string>
 #include <map>
 

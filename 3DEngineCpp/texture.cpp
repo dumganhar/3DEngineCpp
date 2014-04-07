@@ -2,6 +2,7 @@
 #include "stb_image.h"
 #include <iostream>
 #include <cassert>
+#include "FileUtils.h"
 
 const TextureData* Texture::s_lastBind = 0;
 std::map<std::string, TextureData*> Texture::s_resourceMap;
@@ -31,7 +32,7 @@ Texture::Texture(const std::string& fileName, GLenum textureTarget, GLfloat filt
 	else
 	{
 		int x, y, bytesPerPixel;
-		unsigned char* data = stbi_load(("./res/textures/" + fileName).c_str(), &x, &y, &bytesPerPixel, 4);
+		unsigned char* data = stbi_load(fullPath("./res/textures/", fileName).c_str(), &x, &y, &bytesPerPixel, 4);
 
 		if(data == NULL)
 		{

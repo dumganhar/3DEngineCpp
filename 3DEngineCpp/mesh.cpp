@@ -1,5 +1,9 @@
 #include "mesh.h"
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include "obj_loader.h"
 #include <iostream>
 

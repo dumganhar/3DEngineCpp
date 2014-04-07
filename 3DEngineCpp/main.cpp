@@ -1,6 +1,7 @@
 #include "3DEngine.h"
 #include "freeLook.h"
 #include "freeMove.h"
+#include "FileUtils.h"
 
 class TestGame : public Game
 {
@@ -21,7 +22,7 @@ void TestGame::Init()
 	GameObject* spotLightObject = new GameObject();
 	GameObject* directionalLightObject = new GameObject();
 
-	planeObject->AddComponent(new MeshRenderer(new Mesh("./res/models/plane3.obj"), new Material(new Texture("bricks.jpg"), 1, 8)));
+	planeObject->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "plane3.obj")), new Material(new Texture("bricks.jpg"), 1, 8)));
 	planeObject->GetTransform().SetPos(Vector3f(0, -1, 5));
 	planeObject->GetTransform().SetScale(4.0f);
 	
@@ -36,8 +37,8 @@ void TestGame::Init()
 	GameObject* testMesh1 = new GameObject();
 	GameObject* testMesh2 = new GameObject();
 	
-	testMesh1->AddComponent(new MeshRenderer(new Mesh("./res/models/plane3.obj"), new Material(new Texture("bricks.jpg"), 1, 8)));
-	testMesh2->AddComponent(new MeshRenderer(new Mesh("./res/models/plane3.obj"), new Material(new Texture("bricks.jpg"), 1, 8)));
+	testMesh1->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "plane3.obj")), new Material(new Texture("bricks.jpg"), 1, 8)));
+	testMesh2->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "plane3.obj")), new Material(new Texture("bricks.jpg"), 1, 8)));
 	
 	testMesh1->GetTransform().SetPos(Vector3f(0, 2, 0));
 	testMesh1->GetTransform().SetRot(Quaternion(Vector3f(0,1,0), 0.4f));
@@ -60,7 +61,7 @@ void TestGame::Init()
 	directionalLightObject->GetTransform().SetRot(Quaternion(Vector3f(1,0,0), ToRadians(-45)));
 }
 
-int main()
+int main(int argc, char* argv[])
 {
 	TestGame game;
 	CoreEngine engine(800, 600, 60, &game);
