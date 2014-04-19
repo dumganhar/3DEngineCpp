@@ -386,7 +386,8 @@ static inline std::vector<std::string> SplitString(const std::string &s, char de
     unsigned int strLength = (unsigned int)s.length();
     unsigned int start = 0;
     unsigned int end = 0;
-        
+    std::string elem;
+    
     while(end <= strLength)
     {
         while(end <= strLength)
@@ -395,8 +396,12 @@ static inline std::vector<std::string> SplitString(const std::string &s, char de
                 break;
             end++;
         }
-            
-        elems.push_back(s.substr(start, end - start));
+        
+        elem = s.substr(start, end - start);
+        if (!elem.empty() && elem != " ")
+        {
+            elems.push_back(elem);
+        }
         start = end + 1;
         end = start;
     }

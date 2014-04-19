@@ -37,7 +37,7 @@ void TestGame::Init()
 	GameObject* testMesh1 = new GameObject();
 	GameObject* testMesh2 = new GameObject();
 	
-	testMesh1->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "plane3.obj")), new Material(new Texture("bricks.jpg"), 1, 8)));
+	testMesh1->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "playerv002.obj")), new Material(new Texture("playerv002_256.png"), 1, 8)));
 	testMesh2->AddComponent(new MeshRenderer(new Mesh(fullPath("res/models", "plane3.obj")), new Material(new Texture("bricks.jpg"), 1, 8)));
 	
 	testMesh1->GetTransform().SetPos(Vector3f(0, 2, 0));
@@ -57,6 +57,7 @@ void TestGame::Init()
 		->AddComponent(new Camera(ToRadians(70.0f), Window::GetAspect(), 0.01f, 1000.0f))
 		->AddComponent(new FreeLook())
 		->AddComponent(new FreeMove()));
+    
 	
 	directionalLightObject->GetTransform().SetRot(Quaternion(Vector3f(1,0,0), ToRadians(-45)));
 }

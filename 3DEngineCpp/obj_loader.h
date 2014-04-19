@@ -7,6 +7,11 @@
 
 struct OBJIndex
 {
+    OBJIndex()
+    : vertexIndex(0)
+    , uvIndex(0)
+    , normalIndex(0)
+    {}
     unsigned int vertexIndex;
     unsigned int uvIndex;
     unsigned int normalIndex;
